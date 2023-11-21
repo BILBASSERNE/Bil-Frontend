@@ -1,0 +1,38 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+    max-width: 2000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    padding-top: 20px;
+    background: #f2f2f2;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    transition: all 0.5s ease;
+}
+
+.corner {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    transform: translate(0, 0);
+    font-size: 1em;
+}
+
+.wrap {
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+.search-filter-section {
+    position: relative;
+    padding: 20px;
+}
