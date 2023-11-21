@@ -2,13 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilshop</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/70b69eae61.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<h1>Hello world</h1>
+<nav class="navbar">
+    <div class="navbar__container">
+        <a href="/" id="navbar__logo">Bilshop</a>
+    </div>
+    <ul class="navbar__menu">
+        <li class="navbar__item">
+            <a href="/" class="navbar__links">
+                Sælg din bil
+            </a>
+        </li>
+        <li class="navbar__item">
+            <a href="/" class="navbar__links" >
+                Dine Announcer
+            </a>
+        </li>
+        <li class="navbar__item">
+            <a href="/aboutme.html" class="navbar__links">
+                Dine Favoritter
+            </a>
+        </li>
+        <li class="navbar__btn">
+            <a href="/" class="button">Login</a></li>
+    </ul>
+</nav>
+<div class="search__container">
+    <form>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="søg på mærke, whatever...">
+        <button type="submit">Søg </button>
+    </form>
+    </div>
+<div class="card-container">
+    <div class="card">
+        <img src="biler/Mercedes%20C300%20de.png">
+        <div class="content">
+            <h2>Mercedes C300</h2>
+            <p>bil 1</p>
+            <a href="">Læs Mere</a>
+    </div>
+</div>
+    <div class="card">
+        <img src="biler/volvo%20v40.png">
+        <div class="content">
+            <h2>volvo v40</h2>
+            <p>bil 2</p>
+            <a href="">Læs Mere</a>
+        </div>
+    </div>
+    <div class="card">
+        <img src="biler/opel%20mokka.png">
+        <div class="content">
+            <h2>opel mokka</h2>
+            <p>bil 3</p>
+            <a href="">Læs Mere</a>
+        </div>
+    </div>
+</div>
 
 <script src="js/index.js"></script>
 </body>
 </html>
 
-<!--hvad sovsen-->
