@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>BILBASSEN</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/navBarModal.css">
+    <script src="js/index.js"></script>
 
 </head>
 <body>
@@ -11,7 +13,6 @@
 <div id="nav-bar">
     <ul>
         <a href="#background-container"></a>
-
         <ul>
             <li><a href="#">Sælg din bil</a></li>
             <li><a href="#">Dine annoncer</a></li>
@@ -21,6 +22,39 @@
             <li></li>
         </ul>
 
+        <section id="modal">
+            <button id="myBtn">Opret bruger</button>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <form method="POST" action="/createAccount">
+                        <h3><label>Brugernavn </label></h3>
+                        <input type="text" id="username" placeholder="Brugernavn..." required="required"/>
+
+                        <h3><label>Kodeord </label></h3>
+                        <input type="password" id="password" placeholder="Kodeord..." required="required"/>
+
+                        <h3><label>Fornavn </label></h3>
+                        <input type="text" id="firstname" placeholder="" required="required"/>
+
+                        <h3><label>Efternavn </label></h3>
+                        <input type="text" id="lastname" placeholder="" required="required"/>
+
+                        <h3><label>By </label></h3>
+                        <input type="text" id="city" placeholder="" required="required"/>
+
+                        <h3><label>Telefon nummer </label></h3>
+                        <input type="number" id="phoneNumber" placeholder="+45" required="required"/>
+
+                        <h3><label>Email </label></h3>
+                        <input type="email" id="email" placeholder="" required="required"/>
+
+                        <!-- Move the closing </form> tag here -->
+                        <button type="submit" id="submitAccount">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </section>
 
         <div class="sign-in">
             <ul>
@@ -35,18 +69,12 @@
 
 
 <div class="main-div">
-
     <div class="search-div">
-
         <input placeholder="  Search for something...">
         <button class="buttons">Filters</button>
-
     </div>
-
     <div class="divider">
-
     </div>
-
     <div class="car-div">
 
         <div class="card-container">
@@ -77,14 +105,9 @@
         </div>
 
     </div>
-
 </div>
 
 
 
-
-<script src="js/index.js"></script>
 </body>
 </html>
-
-<!--hvad sovsen-->
