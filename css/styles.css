@@ -184,9 +184,10 @@ button:hover {
     margin-bottom: 10px;
 }
 
+a {
+    color: black;
+}
 
-
-
-
-
-
+a:hover {
+    color: blue;
+}
