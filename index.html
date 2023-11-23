@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/navBarModal.css">
     <script src="js/index.js"></script>
-
 </head>
 <body>
 
@@ -23,7 +22,6 @@
         </ul>
 
         <section id="modal">
-            <button id="myBtn">Opret bruger</button>
             <div id="myModal" class="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
@@ -51,6 +49,23 @@
 
                         <!-- Move the closing </form> tag here -->
                         <button type="submit" id="submitAccount">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="modal" id="loginModal">
+                <div class="modal-content">
+                    <span class="close" id="closeLoginModal">&times;</span>
+                    <form method="POST" action="/authenticate">
+                        <h3><label>Brugernavn </label></h3>
+                        <input type="text" id="usernameLogin" placeholder="Brugernavn..." required="required"/>
+
+                        <h3><label>Kodeord </label></h3>
+                        <input type="password" id="passwordLogin" placeholder="Kodeord..." required="required"/>
+
+                        <button type="submit" id="submitLogin">Submit</button>
                     </form>
                 </div>
             </div>
