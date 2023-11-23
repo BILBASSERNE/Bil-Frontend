@@ -51,20 +51,3 @@ function actionGetCars() {
 }
 
 document.addEventListener("DOMContentLoaded", actionGetCars)
-
-document.addEventListener("DOMContentLoaded", function() {
-    const carousel = document.querySelector('.card-container');
-    const buttonNext = document.querySelector('.next');
-    const buttonPrev = document.querySelector('.prev');
-    const cardWidth = 325; // Width of a single card
-
-    buttonNext.addEventListener('click', () => {
-        carousel.scrollLeft += cardWidth; // Scrolls one card's width
-    });
-
-    buttonPrev.addEventListener('click', () => {
-        carousel.scrollLeft -= cardWidth; // Scrolls one card's width
-    });
-});
-
-
