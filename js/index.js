@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    const createAccountUrl = "http://localhost:8080/createAccount";
 
     const username = document.getElementById("username");
     const password = document.getElementById("password");
@@ -32,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault(); // Prevent the form from submitting normally
 
         const newAccount = {
-            username: username.value,
+            userName: username.value,
             password: password.value,
             firstName: firstname.value,
             lastName: lastname.value,
@@ -41,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
             email: email.value
         };
 
-        const postUrl = "http://localhost:8080/createAccount";
+        const postUrl = "http://localhost:8080/register";
 
 
         try {
