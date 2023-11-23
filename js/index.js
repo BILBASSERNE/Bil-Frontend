@@ -112,7 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // CHECK IF USER IS LOGGED IN ON REFRESH
-
 document.addEventListener('DOMContentLoaded', function () {
     const loggedInUser = sessionStorage.getItem("userName")
 
@@ -141,7 +140,6 @@ function updateButtonsIfLoggedIn() {
     buttons.appendChild(logoutBtn)
 }
 
-
 async function postObjectAsJson(url, object, httpVerbum) {
     const objectAsJsonString = JSON.stringify(object)
     console.log(objectAsJsonString)
@@ -153,6 +151,5 @@ async function postObjectAsJson(url, object, httpVerbum) {
         body: objectAsJsonString
     }
     const response = await fetch(url, fetchOptions)
-    console.log(response)
     return response
 }

@@ -42,8 +42,9 @@ async function insertCarCards(carAdvertisement, carImages) {
 let cars = []
 
 async function fetchCars() {
-    cars = await fetchAnyUrl(urlBase)
-    cars.forEach(insertCarCards)
+    cars = await fetchAnyUrl(urlBase);
+    console.log(typeof cars); // Log the type of cars
+    cars.forEach(insertCarCards);
 }
 
 function actionGetCars() {
