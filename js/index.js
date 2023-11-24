@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
         modal.style.display = "block";
     }
 
-    span.onclick = function () {
+   span.onclick = function () {
         modal.style.display = "none";
     }
 
@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
             modal.style.display = "none";
         }
     }
-
 
     const username = document.getElementById("username");
     const password = document.getElementById("password");
@@ -75,3 +74,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 });
+
