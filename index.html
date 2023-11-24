@@ -15,7 +15,7 @@
     <ul>
         <a href="#background-container"></a>
         <ul>
-            <!-- <li><a href="#">Sælg din bil</a></li> -->
+            <li><a id="sellCarBtn" href="#">Sælg din bil</a></li>
             <li><a href="#">Dine annoncer</a></li>
             <li><a href="#">Dine favoritter</a></li>
             <li></li>
@@ -24,108 +24,79 @@
         </ul>
 
         <!-- SÆLG DIN BIL -->
-        <button type="button" class="btn btn-primary" id="sellCarBtn">
-            Sælg din bil
-        </button>
 
-        <!-- Sælg din Bil Modal -->
-        <div class="modal" id="sellCarModal" tabindex="-1" role="dialog" aria-labelledby="sellCarModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+        <section id="sellSection">
+            <div id="sellModal" class="modal">
                 <div class="modal-content">
+                    <span id="closeSellModal">&times;</span>
+                    <form method="post" action="/sellcar">
+                        <label for="name">Bilnavn:</label>
+                        <input type="text" id="name" name="name" required>
 
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h1 class="modal-title" id="sellCarModalLabel">Sælg din bil</h1>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                        <label for="description">Beskrivelse:</label>
+                        <textarea id="description" name="description" required></textarea>
 
-                    <!-- Modal Body -->
-                    <div class="modal-body">
 
-                        <form id="sellCarForm">
-                            <div class="form-group">
-                                <label for="name">Bilnavn:</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
+                        <label for="price">Pris:</label>
+                        <input type="number" id="price" name="price" required>
 
-                            <div class="form-group">
-                                <label for="description">Beskrivelse:</label>
-                                <textarea id="description" name="description" required></textarea>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="price">Pris:</label>
-                                <input type="number" id="price" name="price" required>
-                            </div>
+                        <label for="licenseplate">Nummerplade:</label>
+                        <input type="text" id="licenseplate" name="licenseplate" required>
 
-                            <div class="form-group">
-                                <label for="licenseplate">Nummerplade:</label>
-                                <input type="text" id="licenseplate" name="licenseplate" required>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="carBrand">Bilmærke:</label>
-                                <input type="text" id="carBrand" name="carBrand" required>
-                            </div>
+                        <label for="carBrand">Bilmærke:</label>
+                        <input type="text" id="carBrand" name="carBrand" required>
 
-                            <div class="form-group">
-                                <label for="modelYear">Modelår:</label>
-                                <input type="number" id="modelYear" name="modelYear" required>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="boughtYear">Købsår:</label>
-                                <input type="number" id="boughtYear" name="boughtYear" required>
-                            </div>
+                        <label for="modelYear">Modelår:</label>
+                        <input type="number" id="modelYear" name="modelYear" required>
 
-                            <div class="form-group">
-                                <label for="fuelType">Drivmiddelstype:</label>
-                                <input type="text" id="fuelType" name="fuelType" required>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="fuelConsumption">Brændstofforbrug:</label>
-                                <input type="number" id="fuelConsumption" name="fuelConsumption" required>
-                            </div>
+                        <label for="boughtYear">Købsår:</label>
+                        <input type="number" id="boughtYear" name="boughtYear" required>
 
-                            <div class="form-group">
-                                <label for="carType">Biltype:</label>
-                                <input type="text" id="carType" name="carType" required>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="color">Farve:</label>
-                                <input type="text" id="color" name="color" required>
-                            </div>
+                        <label for="fuelType">Drivmiddelstype:</label>
+                        <input type="text" id="fuelType" name="fuelType" required>
 
-                            <div class="form-group">
-                                <label for="gearType">Geartype:</label>
-                                <input type="text" id="gearType" name="gearType" required>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="numberOfGears">Antal gear:</label>
-                                <input type="number" id="numberOfGears" name="numberOfGears" required>
-                            </div>
+                        <label for="fuelConsumption">Brændstofforbrug:</label>
+                        <input type="number" id="fuelConsumption" name="fuelConsumption" required>
 
-                            <div class="form-group">
-                                <label for="kmDriven">Antal kilometer kørt:</label>
-                                <input type="number" id="kmDriven" name="kmDriven" required>
-                            </div>
 
-                            <button type="submit">Opret Annonce</button>
-                        </form>
-                    </div>
+                        <label for="carType">Biltype:</label>
+                        <input type="text" id="carType" name="carType" required>
+
+
+                        <label for="color">Farve:</label>
+                        <input type="text" id="color" name="color" required>
+
+
+                        <label for="gearType">Geartype:</label>
+                        <input type="text" id="gearType" name="gearType" required>
+
+
+                        <label for="numberOfGears">Antal gear:</label>
+                        <input type="number" id="numberOfGears" name="numberOfGears" required>
+
+
+                        <label for="kmDriven">Antal kilometer kørt:</label>
+                        <input type="number" id="kmDriven" name="kmDriven" required>
+
+
+                        <button type="submit" id="submitCar">Opret Annonce</button>
+                    </form>
 
                 </div>
+
             </div>
-        </div>
+
+        </section>
+
 
         <!-- OPRET BRUGER -->
         <section id="modal">
-            <button id="myBtn">Opret bruger</button>
             <div id="myModal" class="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
@@ -158,6 +129,25 @@
 
             </div>
         </section>
+
+
+        <section>
+            <div class="modal" id="loginModal">
+                <div class="modal-content">
+                    <span class="close" id="closeLoginModal">&times;</span>
+                    <form method="POST" action="/authenticate">
+                        <h3><label>Brugernavn </label></h3>
+                        <input type="text" id="usernameLogin" placeholder="Brugernavn..." required="required"/>
+
+                        <h3><label>Kodeord </label></h3>
+                        <input type="password" id="passwordLogin" placeholder="Kodeord..." required="required"/>
+
+                        <button type="submit" id="submitLogin">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
 
         <div class="sign-in">
             <ul>
