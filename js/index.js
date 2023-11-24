@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     var modal = document.getElementById("myModal");
-    var btn = document.getElementById("myBtn");
+    var btn = document.getElementById("createButton");
     var span = document.getElementsByClassName("close")[0];
 
     btn.onclick = function () {
@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
             modal.style.display = "none";
         }
     }
+
 
     const username = document.getElementById("username");
     const password = document.getElementById("password");
@@ -57,20 +58,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    async function postObjectAsJson(url, object, httpVerbum) {
-        const objectAsJsonString = JSON.stringify(object)
-        console.log(objectAsJsonString)
-        const fetchOptions = {
-            method: httpVerbum,
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: objectAsJsonString
-        }
-        const response = await fetch(url, fetchOptions)
-        console.log(response)
-        return response
+async function postObjectAsJson(url, object, httpVerbum) {
+    const objectAsJsonString = JSON.stringify(object)
+    console.log(objectAsJsonString)
+    const fetchOptions = {
+        method: httpVerbum,
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: objectAsJsonString
     }
+    const response = await fetch(url, fetchOptions)
+    return response
+}
 
 
 });
