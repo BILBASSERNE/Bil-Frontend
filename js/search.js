@@ -15,7 +15,10 @@ function search() {
                 throw new Error("No cars found");
             }
         })
-        .catch(error => displayErrorMessage(error.message));
+        .catch(error => {
+            // Display a popup with the error message
+            alert(error.message);
+        });
 }
 
 function displayResults(results) {
