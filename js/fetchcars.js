@@ -76,9 +76,42 @@ async function insertCarCards(carAdvertisement, carImages) {
 }
 
 function redirectToFavoritePage() {
-    const userName = sessionStorage.getItem("userName") // Replace with the actual username or get it dynamically
-    console.log(userName)
-    window.location.href = "http://localhost:8080/favorite/" + userName;
+    const userName = sessionStorage.getItem("userName");
+
+    if (!userName) {
+        alert("Please log in to view favorites.");
+        return;
+    }
+
+    fetchFavoriteCars();
+}
+
+async function fetchFavoriteCars() {
+    const userName = sessionStorage.getItem("userName");
+
+    if (!userName) {
+        console.error("User not logged in.");
+        return;
+    }
+
+    const favoriteUrl = "http://localhost:8080/favorite/" + userName;
+    const response = await fetch(favoriteUrl);
+
+    if (response.ok) {
+        const favoritedCars = await response.json();
+        displayFavoriteCars(favoritedCars);
+    } else {
+        console.error("Error fetching favorited cars.");
+    }
+}
+
+function displayFavoriteCars(favoritedCars) {
+    const favoriteCarsContainer = document.getElementById("favorite-cars-container");
+    favoriteCarsContainer.innerHTML = ""; // Clear existing content
+
+    favoritedCars.forEach(car => {
+        insertCarCards(car); // Assuming insertCarCards is a function to create card elements
+    });
 }
 
 
