@@ -10,7 +10,6 @@ body {
     background-color: grey;
 }
 
-
 #nav-bar {
     position: fixed;
     background-color: white;
@@ -190,4 +189,40 @@ a {
 
 a:hover {
     color: blue;
+}
+
+/* Add this CSS to your stylesheet or style tag */
+
+.favorite-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 32px;
+    padding: 0;
+    display: inline-block;
+}
+
+.favorite-button::after {
+    content: '\2605'; /* Unicode character for a star */
+    color: gold; /* You can change the color to your preference */
+}
+
+
+.footer {
+    background-color: lightgray;
+    padding: 80px;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.footer .copyright {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.footer p {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 15px;
 }

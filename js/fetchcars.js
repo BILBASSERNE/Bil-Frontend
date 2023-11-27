@@ -1,4 +1,6 @@
-import {fetchAnyUrl} from "./modulejson.js";
+// import {fetchAnyUrl} from "js/modulejson.js"
+
+// import {postObjectAsJson} from "js/modulejson.js";
 
 const urlBase = "http://localhost:8080/bilbassen";
 
@@ -22,6 +24,40 @@ async function insertCarCards(carAdvertisement, carImages) {
     const carPrice = document.createElement("p")
     carPrice.innerText = carAdvertisement.price + "kr"
 
+    const favoriteButton = document.createElement("button")
+    favoriteButton.innerText = "";
+    favoriteButton.classList.add("favorite-button");
+
+    /*favoriteButton.setAttribute("carId", carAdvertisement.id);
+    favoriteButton.addEventListener("click", favoriteCar)*/
+
+    favoriteButton.addEventListener("click", async() => {
+        console.log("favoriteButton is clicked")
+
+        const carId = carAdvertisement.id;
+        const userName = sessionStorage.getItem("userName");
+
+        const favoriteObject = {
+            carAdvertisement: carId,
+            userName: userName
+        }
+
+        const favoriteUrl = "http://localhost:8080/favorite" + "/" + carId +  "/" + userName;
+
+        console.log(favoriteObject)
+        const response = await postObjectAsJson(favoriteUrl, favoriteObject, "POST")
+        console.log(response)
+
+        if (response.ok) {
+            alert("Bil er tilføjet til favoritter!")
+        } else {
+            const errorText = await response.text()
+            console.log(errorText)
+            alert("Bil kunne ikke tilføjes til favoritter")
+        }
+
+    });
+
     const carLink = document.createElement("a")
     carLink.href = ""
     carLink.innerText = "Læs Mere"
@@ -31,13 +67,20 @@ async function insertCarCards(carAdvertisement, carImages) {
     carContent.appendChild(carName)
     carContent.appendChild(carPrice)
     carContent.appendChild(carLink)
+    carContent.appendChild(favoriteButton)
 
     carCardDiv.appendChild(carContent)
 
     const cardContainer = document.querySelector('.card-container');
     cardContainer.appendChild(carCardDiv);
-    console.log(cardContainer)
 }
+
+function redirectToFavoritePage() {
+    const userName = sessionStorage.getItem("userName") // Replace with the actual username or get it dynamically
+    console.log(userName)
+    window.location.href = "http://localhost:8080/favorite/" + userName;
+}
+
 
 let cars = []
 
@@ -49,6 +92,10 @@ async function fetchCars() {
 
 function actionGetCars() {
     fetchCars()
+}
+
+function fetchAnyUrl(url) {
+    return  fetch(url).then(response => response.json());
 }
 
 document.addEventListener("DOMContentLoaded", actionGetCars)
