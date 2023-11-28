@@ -73,6 +73,74 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    var rentModal = document.getElementById("rentModal");
+    var rentBtn = document.getElementById("rentCarBtn");
+    var closeButton = document.getElementById("closeRentModal");
+
+    rentBtn.onclick = function () {
+        rentModal.style.display = "block";
+    }
+
+    closeButton.onclick = function () {
+        rentModal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+        if (event.target == rentModal) {
+            rentModal.style.display = "none";
+        }
+    }
+
+    const carName = document.getElementById("rentname")
+    const description = document.getElementById("rentdescription")
+    const price = document.getElementById("rentprice")
+    const carBrand = document.getElementById("rentcarBrand")
+    const modelYear = document.getElementById("rentmodelYear")
+    const fuelType = document.getElementById("rentfuelType")
+    const carType = document.getElementById("rentcarType")
+    const gearType = document.getElementById("rentgearType")
+    const seats = document.getElementById("rentseats")
+    const equipment = document.getElementById("rentequipment")
+    const rules = document.getElementById("rentrules")
+    const submitCar = document.getElementById("rentsubmitCar")
+
+    submitCar.addEventListener("click", async function (event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+
+        const car = {
+            name: carName.value,
+            description: description.value,
+            price: price.value,
+            carBrand: carBrand.value,
+            modelYear: modelYear.value,
+            fuelType: fuelType.value,
+            carType: carType.value,
+            gearType: gearType.value,
+            seats: seats.value,
+            equipment: equipment.value,
+            rules: rules.value
+        };
+
+        const postUrl = "http://localhost:8080/rentcar";
+
+
+        try {
+            const response = await postObjectAsJson(postUrl, car, "POST");
+            console.log("jeg poster");
+
+            if (response.ok) {
+                alert("car created");
+            } else {
+                alert("no car created");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    });
+
+});
+
 /*class ModalHandler {
     constructor(modalId, triggerBtnId) {
         this.modal = document.getElementById(modalId);

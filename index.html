@@ -16,6 +16,7 @@
         <a href="#background-container"></a>
         <ul>
             <li><a id="sellCarBtn" href="#">Sælg din bil</a></li>
+            <li><a id="rentCarBtn" href="#">Lej din bil ud</a></li>
             <li><a href="#">Dine annoncer</a></li>
             <li><a href="#">Dine favoritter</a></li>
             <li></li>
@@ -86,6 +87,56 @@
 
 
                         <button type="submit" id="submitCar">Opret Annonce</button>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section id="rentSection">
+            <div id="rentModal" class="modal">
+                <div class="modal-content">
+                    <span id="closeRentModal">&times;</span>
+                    <form method="post" action="/sellcar">
+                        <label for="rentname">Bilnavn:</label>
+                        <input type="text" id="rentname" name="name" required>
+
+                        <label for="rentdescription">Beskrivelse:</label>
+                        <textarea id="rentdescription" name="description" required></textarea>
+
+                        <label for="rentprice">Pris pr. day:</label>
+                        <input type="number" id="rentprice" name="price" required>
+
+                        <label for="rentcarBrand">Bilmærke:</label>
+                        <input type="text" id="rentcarBrand" name="carBrand" required>
+
+                        <label for="rentmodelYear">Modelår:</label>
+                        <input type="number" id="rentmodelYear" name="modelYear" required>
+
+                        <label for="rentfuelType">Brændstoftype:</label>
+                        <input type="text" id="rentfuelType" name="fuelType" required>
+
+                        <label for="rentcarType">Biltype:</label>
+                        <input type="text" id="rentcarType" name="carType" required>
+
+                        <label for="rentgearType">Geartype:</label>
+                        <input type="number" id="rentgearType" name="gearType" required>
+
+                        <label for="rentseats">Sæder:</label>
+                        <input type="number" id="rentseats" name="seats" required>
+
+                        <label for="rentequipment">Udstyr:</label>
+                        <input type="text" id="rentequipment" name="equipment" required>
+
+                        <label for="rentrules">Regler:</label>
+                        <input type="text" id="rentrules" name="rules" required>
+
+                        <label for="rentlocation">Lokation:</label>
+                        <input type="text" id="rentlocation" name="location" required>
+
+                        <button type="submit" id="rentsubmitCar">Opret Annonce</button>
                     </form>
 
                 </div>
