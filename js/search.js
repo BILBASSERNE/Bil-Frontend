@@ -2,21 +2,17 @@ function search() {
     var keyword = document.getElementById("searchInput").value;
     fetch('http://localhost:8080/cars?keyword=' + keyword)
         .then(response => {
-            if (response.status !== 200) {
+            if (!response.ok) {
                 throw new Error("No cars found");
             }
             return response.json();
         })
         .then(data => {
-            var resultsDiv = document.getElementById("searchResults");
-            resultsDiv.innerHTML = ""; // Clear previous results
-
             if (data.length > 0) {
                 displayResults(data);
                 alert("Search function works!");
             } else {
-                // No results found, display a message
-                resultsDiv.innerHTML = "Ingen resultater";
+                throw new Error("No cars found");
             }
         })
         .catch(error => {
@@ -27,16 +23,22 @@ function search() {
 
 function displayResults(results) {
     var resultsDiv = document.getElementById("searchResults");
+    resultsDiv.innerHTML = ""; // Clear previous results
 
     if (results.length === 0) {
-        resultsDiv.innerText = "Ingen resultater";
+        // If there are no results, display a message
+        var noResultsMessage = document.createElement("p");
+        noResultsMessage.innerText = "Ingen resultater";
+        resultsDiv.appendChild(noResultsMessage);
         return;
     }
 
+    // Create a container for the cards
     var cardContainer = document.createElement("div");
     cardContainer.className = "card-container";
 
     results.forEach(result => {
+        // Create card elements similar to your manual cards
         var resultCard = document.createElement("div");
         resultCard.className = "card";
 
@@ -61,6 +63,7 @@ function displayResults(results) {
         carLink.href = ""; // Use the actual link from your result
         carLink.innerText = "Læs Mere";
 
+        // Append elements to build the card
         contentDiv.appendChild(carName);
         contentDiv.appendChild(carPrice);
         contentDiv.appendChild(carDescription);
@@ -69,6 +72,7 @@ function displayResults(results) {
         resultCard.appendChild(carImage);
         resultCard.appendChild(contentDiv);
 
+        // Append the card to the container
         cardContainer.appendChild(resultCard);
     });
 

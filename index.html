@@ -5,9 +5,7 @@
     <title>BILBASSEN</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/navBarModal.css">
-    <script src="js/index.js"></script>
-    <script src="js/sellcar.js"></script>
-    <script src="js/fetchcars.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
 
 </head>
 <body>
@@ -16,77 +14,14 @@
     <ul>
         <a href="#background-container"></a>
         <ul>
-            <li><a id="sellCarBtn" href="#">Sælg din bil</a></li>
+            <li><a href="#">Sælg din bil</a></li>
             <li><a href="#">Dine annoncer</a></li>
-            <li><a href="#" onclick="redirectToFavoritePage()">Dine favoritter</a></li>
+            <li><a href="#">Dine favoritter</a></li>
             <li></li>
             <li></li>
             <li></li>
         </ul>
 
-        <!-- SÆLG DIN BIL -->
-        <section id="sellSection">
-            <div id="sellModal" class="modal">
-                <div class="modal-content">
-                    <span id="closeSellModal">&times;</span>
-                    <form method="post" action="/sellcar">
-                        <label for="name">Bilnavn:</label>
-                        <input type="text" id="name" name="name" required>
-
-                        <label for="description">Beskrivelse:</label>
-                        <textarea id="description" name="description" required></textarea>
-
-                        <label for="price">Pris:</label>
-                        <input type="number" id="price" name="price" required>
-
-                        <label for="licenseplate">Nummerplade:</label>
-                        <input type="text" id="licenseplate" name="licenseplate" required>
-
-                        <label for="carBrand">Bilmærke:</label>
-                        <input type="text" id="carBrand" name="carBrand" required>
-
-                        <label for="modelYear">Modelår:</label>
-                        <input type="number" id="modelYear" name="modelYear" required>
-
-                        <label for="boughtYear">Købsår:</label>
-                        <input type="number" id="boughtYear" name="boughtYear" required>
-
-                        <label for="fuelType">Drivmiddelstype:</label>
-                        <input type="text" id="fuelType" name="fuelType" required>
-
-                        <label for="fuelConsumption">Brændstofforbrug:</label>
-                        <input type="number" id="fuelConsumption" name="fuelConsumption" required>
-
-                        <label for="carType">Biltype:</label>
-                        <input type="text" id="carType" name="carType" required>
-
-                        <label for="color">Farve:</label>
-                        <input type="text" id="color" name="color" required>
-
-                        <label for="gearType">Geartype:</label>
-                        <input type="text" id="gearType" name="gearType" required>
-
-                        <label for="numberOfGears">Antal gear:</label>
-                        <input type="number" id="numberOfGears" name="numberOfGears" required>
-
-                        <label for="kmDriven">Antal kilometer kørt:</label>
-                        <input type="number" id="kmDriven" name="kmDriven" required>
-
-                        <label for="isActive">Klik af for at aktivere annonce:</label>
-                        <input type="checkbox" id="isActive" name="isActive" required>
-
-
-                        <button type="submit" id="submitCar">Opret Annonce</button>
-                    </form>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- OPRET BRUGER -->
         <section id="modal">
             <div id="myModal" class="modal">
                 <div class="modal-content">
@@ -117,11 +52,9 @@
                         <button type="submit" id="submitAccount">Submit</button>
                     </form>
                 </div>
-
             </div>
         </section>
 
-        <!-- LOGIN -->
         <section>
             <div class="modal" id="loginModal">
                 <div class="modal-content">
@@ -139,7 +72,6 @@
             </div>
         </section>
 
-
         <div class="sign-in">
             <ul>
                 <li id="buttons">
@@ -154,8 +86,9 @@
 
 <div class="main-div">
     <div class="search-div">
-        <input placeholder="  Search for something...">
-        <button class="buttons">Filters</button>
+
+        <input type="text" id="searchInput" placeholder="Enter a keyword">
+        <button onclick="search()">Søg</button>
     </div>
     <div id="searchResults"></div>
 
@@ -163,8 +96,11 @@
     </div>
     <div class="divider">
     </div>
-    <div class="car-div">
+    <a href="google.com" class="car-filter">
+        <h2>senest tilføjede annoncer</h2>
+    </a>
 
+    <div class="car-div">
         <div class="card-container">
             <div class="card">
                 <img src="https://www.insidehook.com/wp-content/uploads/2020/02/BMW.jpg?fit=1200%2C800">
@@ -191,31 +127,16 @@
                 </div>
             </div>
         </div>
-        <div id="favorite-cars-container" class="card-container"></div>
+
     </div>
 </div>
 
-<!--<div id="favorite-cars-container" class="card-container"></div>-->
-
-
-<section class="footer" id="contact">
-    <div><a href="https://github.com/navidmirzad/KinoXP" target="_blank" rel="noopener" rel="noreferrer" class="social">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" width="50" height="50" viewBox="0 0 24 24">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-        </svg>
-    </a></div>
-    <p class="copyright">
-        2023 <br>
-        Enes Kocer <br>
-        Navid Mirzad <br>
-        Youssef Talbi <br>
-        André Jensen <br>
-        Mathias Wulff <br>
-    </p>
-    <br> <br>
-</section>
 
 
 
+<script type="module" src="js/index.js"></script>
+<script type="module" src="js/fetchcars.js"></script>
+<script src="js/index.js"></script>
+<script src="js/search.js"></script>
 </body>
 </html>
