@@ -58,6 +58,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const postUrl = "http://localhost:8080/sellcar";
 
 
+        const userName = sessionStorage.getItem("userName");
+        if (!userName) {
+            alert("Du skal være logget ind for at sælge en bil");
+            return;
+        }
+
         try {
             const response = await postObjectAsJson(postUrl, car, "POST");
             console.log("jeg poster");
@@ -124,6 +130,12 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         const postUrl = "http://localhost:8080/rentcar";
+
+        const userName = sessionStorage.getItem("userName");
+        if (!userName) {
+            alert("Du skal være logget ind for at kunne leje en bil ud");
+            return;
+        }
 
 
         try {
