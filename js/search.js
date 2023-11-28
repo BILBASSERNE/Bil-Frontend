@@ -66,7 +66,7 @@ function displayResults(results) {
 
         resultCard.appendChild(carImage);
         resultCard.appendChild(contentDiv);
-        
+
         cardContainer.appendChild(resultCard);
     });
 
