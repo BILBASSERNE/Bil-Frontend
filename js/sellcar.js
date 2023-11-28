@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const gearType = document.getElementById("gearType")
     const numberOfGears = document.getElementById("numberOfGears")
     const kmDriven = document.getElementById("kmDriven")
+    const isActive = document.getElementById("isActive")
     const submitCar = document.getElementById("submitCar")
 
     submitCar.addEventListener("click", async function (event) {
@@ -51,7 +52,8 @@ document.addEventListener('DOMContentLoaded', function () {
             color: color.value,
             gearType: gearType.value,
             numberOfGears: numberOfGears.value,
-            kmDriven: kmDriven.value
+            kmDriven: kmDriven.value,
+            isActive: isActive.value
         };
 
         const postUrl = "http://localhost:8080/sellcar";
@@ -161,15 +163,6 @@ document.addEventListener('DOMContentLoaded', function () {
         this.modal.addEventListener('click', this.hideModal);
     }
 
-    showModal() {
-        this.modal.style.display = 'block';
-    }
-
-    hideModal() {
-        this.modal.style.display = 'none';
-    }
-
-}*/
 
 
 

@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-
     const username = document.getElementById("username");
     const password = document.getElementById("password");
     const firstname = document.getElementById("firstname");
