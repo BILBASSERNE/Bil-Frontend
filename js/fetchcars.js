@@ -28,9 +28,6 @@ async function insertCarCards(carAdvertisement, carImages) {
     favoriteButton.innerText = "";
     favoriteButton.classList.add("favorite-button");
 
-    /*favoriteButton.setAttribute("carId", carAdvertisement.id);
-    favoriteButton.addEventListener("click", favoriteCar)*/
-
     favoriteButton.addEventListener("click", async() => {
         console.log("favoriteButton is clicked")
 

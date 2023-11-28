@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     var sellModal = document.getElementById("sellModal");
     var sellBtn = document.getElementById("sellCarBtn");
@@ -142,5 +141,3 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
-
-console.log("Hello")

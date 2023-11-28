@@ -5,9 +5,6 @@
     <title>BILBASSEN</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/navBarModal.css">
-    <script src="js/index.js"></script>
-    <script src="js/sellcar.js"></script>
-    <script src="js/fetchcars.js"></script>
 
 </head>
 <body>
@@ -30,52 +27,54 @@
             <div id="sellModal" class="modal">
                 <div class="modal-content">
                     <span id="closeSellModal">&times;</span>
-                    <form method="post" action="/sellcar">
-                        <label for="name">Bilnavn:</label>
+                    <form id="sellCarForm" method="post" action="/sellcar">
+                        <label for="name">Model</label>
                         <input type="text" id="name" name="name" required>
 
-                        <label for="description">Beskrivelse:</label>
+                        <label for="description">Beskrivelse</label>
                         <textarea id="description" name="description" required></textarea>
 
-                        <label for="price">Pris:</label>
+                        <label for="price">Pris</label>
                         <input type="number" id="price" name="price" required>
 
-                        <label for="licenseplate">Nummerplade:</label>
+                        <label for="licenseplate">Nummerplade</label>
                         <input type="text" id="licenseplate" name="licenseplate" required>
 
-                        <label for="carBrand">Bilmærke:</label>
+                        <label for="carBrand">Bilmærke</label>
                         <input type="text" id="carBrand" name="carBrand" required>
 
-                        <label for="modelYear">Modelår:</label>
+                        <label for="modelYear">Modelår</label>
                         <input type="number" id="modelYear" name="modelYear" required>
 
-                        <label for="boughtYear">Købsår:</label>
+                        <label for="boughtYear">Købsår</label>
                         <input type="number" id="boughtYear" name="boughtYear" required>
 
-                        <label for="fuelType">Drivmiddelstype:</label>
+                        <label for="fuelType">Brændstof type</label>
                         <input type="text" id="fuelType" name="fuelType" required>
 
-                        <label for="fuelConsumption">Brændstofforbrug:</label>
+                        <label for="fuelConsumption">Brændstofforbrug</label>
                         <input type="number" id="fuelConsumption" name="fuelConsumption" required>
 
-                        <label for="carType">Biltype:</label>
+                        <label for="carType">Biltype</label>
                         <input type="text" id="carType" name="carType" required>
 
-                        <label for="color">Farve:</label>
+                        <label for="color">Farve</label>
                         <input type="text" id="color" name="color" required>
 
-                        <label for="gearType">Geartype:</label>
+                        <label for="carImages">Billeder</label>
+                        <input type="file" id="carImages" name="carImages" accept="image/*" multiple>
+
+                        <label for="gearType">Gear type</label>
                         <input type="text" id="gearType" name="gearType" required>
 
-                        <label for="numberOfGears">Antal gear:</label>
+                        <label for="numberOfGears">Antal gear</label>
                         <input type="number" id="numberOfGears" name="numberOfGears" required>
 
-                        <label for="kmDriven">Antal kilometer kørt:</label>
+                        <label for="kmDriven">KM/Kørt</label>
                         <input type="number" id="kmDriven" name="kmDriven" required>
 
-                        <label for="isActive">Klik af for at aktivere annonce:</label>
+                        <label for="isActive">Klik af for at aktivere annonce</label>
                         <input type="checkbox" id="isActive" name="isActive" required>
-
 
                         <button type="submit" id="submitCar">Opret Annonce</button>
                     </form>
@@ -268,9 +267,10 @@
 </section>
 
 
-<script type="module" src="js/index.js"></script>
-<script type="module" src="js/fetchcars.js"></script>
 <script src="js/index.js"></script>
 <script src="js/search.js"></script>
+<script src="js/sellcar.js"></script>
+<script src="js/fetchcars.js"></script>
+<script type="module" src="js/modulejson.js"></script>
 </body>
 </html>
