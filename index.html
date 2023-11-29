@@ -5,6 +5,7 @@
     <title>BILBASSEN</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/navBarModal.css">
+    <link rel="stylesheet" href="css/chatModal.css">
 
 </head>
 <body>
@@ -17,7 +18,7 @@
             <li><a id="rentCarBtn" href="#">Lej din bil ud</a></li>
             <li><a href="#">Dine annoncer</a></li>
             <li><a href="#" onclick="redirectToFavoritePage()">Dine favoritter</a></li>
-            <li></li>
+            <li><a id="chatBtn" href="#">Chat</a></li>
             <li></li>
             <li></li>
         </ul>
@@ -78,11 +79,8 @@
 
                         <button type="submit" id="submitCar">Opret Annonce</button>
                     </form>
-
                 </div>
-
             </div>
-
         </section>
 
         <section id="rentSection">
@@ -135,7 +133,6 @@
 
         </section>
 
-
         <!-- OPRET BRUGER -->
         <section id="modal">
             <div id="myModal" class="modal">
@@ -186,6 +183,34 @@
                         <button type="submit" id="submitLogin">Submit</button>
                     </form>
                 </div>
+            </div>
+        </section>
+
+        <!-- CHAT -->
+        <section id="chatSection">
+            <div class="chatModal" id="gptModal">
+                <div class="modal-content">
+                    <span class="close" id="closeBtn">&times;</span>
+                    <form method="POST" id="form" action="/chat">
+                        <h2>I tvivl om hvilken bil du skal købe? Chat med os!</h2>
+                        <textarea id="multi-line-input" name="moviesAndActors" rows="10" cols="80"
+                                  placeholder="Fortæl os lidt om hvilken slags bil du leder efter ift. bilmærke præferencer, dit budget og mere...
+
+for eksempel:
+Jeg leder efter en lille bil jeg skal kunne parkere med inde i byen, det behøver ikke at være noget fancy,
+så længe den kører langt på literen og er i rimelig stand. Hvilke biler kunne i anbefale?"
+
+                        ></textarea>
+                        <br>
+                        <input type="hidden" id="requestInput" name="request" value="">
+
+                        <button type="submit" id="submitLogin">Submit</button>
+                    </form>
+                    <br>
+                    <textarea id="answerBox" name="answerBox" rows="10" cols="80" placeholder="Forslag..."></textarea>
+                    <br>
+                </div>
+
             </div>
         </section>
 
@@ -271,6 +296,7 @@
 <script src="js/search.js"></script>
 <script src="js/sellcar.js"></script>
 <script src="js/fetchcars.js"></script>
+<script src="js/CarRecommendationForm.js"></script>
 <script type="module" src="js/modulejson.js"></script>
 </body>
 </html>
