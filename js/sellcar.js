@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     var sellModal = document.getElementById("sellModal");
     var sellBtn = document.getElementById("sellCarBtn");
@@ -94,35 +93,40 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    const carName = document.getElementById("rentname")
-    const description = document.getElementById("rentdescription")
-    const price = document.getElementById("rentprice")
-    const carBrand = document.getElementById("rentcarBrand")
-    const modelYear = document.getElementById("rentmodelYear")
-    const fuelType = document.getElementById("rentfuelType")
-    const carType = document.getElementById("rentcarType")
-    const gearType = document.getElementById("rentgearType")
+    const rentCarName = document.getElementById("rentname")
+    const rentDescription = document.getElementById("rentdescription")
+    const rentPrice = document.getElementById("rentprice")
+    const rentCarBrand = document.getElementById("rentcarBrand")
+    const rentModelYear = document.getElementById("rentmodelYear")
+    const rentFuelType = document.getElementById("rentfuelType")
+    const rentCarType = document.getElementById("rentcarType")
+    const rentGearType = document.getElementById("rentgearType")
     const seats = document.getElementById("rentseats")
     const equipment = document.getElementById("rentequipment")
     const rules = document.getElementById("rentrules")
-    const submitCar = document.getElementById("rentsubmitCar")
+    const location = document.getElementById("rentlocation")
+    const rentSubmitCar = document.getElementById("rentsubmitCar")
+    const isRenting = true
 
-    submitCar.addEventListener("click", async function (event) {
+    rentSubmitCar.addEventListener("click", async function (event) {
         event.preventDefault(); // Prevent the form from submitting normally
 
         const car = {
-            name: carName.value,
-            description: description.value,
-            price: price.value,
-            carBrand: carBrand.value,
-            modelYear: modelYear.value,
-            fuelType: fuelType.value,
-            carType: carType.value,
-            gearType: gearType.value,
+            name: rentCarName.value,
+            description: rentDescription.value,
+            price: rentPrice.value,
+            carBrand: rentCarBrand.value,
+            modelYear: rentModelYear.value,
+            fuelType: rentFuelType.value,
+            carType: rentCarType.value,
+            gearType: rentGearType.value,
             seats: seats.value,
             equipment: equipment.value,
-            rules: rules.value
+            rules: rules.value,
+            location: location.value,
+            isRenting: true
         };
+        console.log(car)
 
         const postUrl = "http://localhost:8080/rentcar";
 

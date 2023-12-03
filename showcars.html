@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>BILBASSEN</title>
+    <title>Show Cars</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/navBarModal.css">
-    <script type="module" src="js/index.js"></script>
-    <script type="module" src="js/fetchcars.js"></script>
+    <link rel="stylesheet" href="css/showCar.css">
+    <script type="module" src="js/showCar.js"></script>
     <script type="module" src="js/sellcar.js"></script>
-
-
+    <script type="module" src="js/index.js"></script>
 </head>
 <body>
 
@@ -203,52 +202,19 @@
     </ul>
 </div>
 
-
-<div class="main-div">
-    <div class="search-div">
-
-        <input type="text" id="searchInput" placeholder="Enter a keyword">
-        <button onclick="search()">Søg</button>
+<div class="car-container">
+    <!-- Left Sidebar for User Information -->
+    <div class="usersidebar">
+        <h2>User Information</h2>
+        <p><strong>First Name:</strong> John</p>
+        <p><strong>Last Name:</strong> Doe</p>
+        <p><strong>City:</strong> New York</p>
+        <p><strong>Telephone:</strong> 123-456-7890</p>
     </div>
-    <div id="searchResults"></div>
 
-    <div class="car-div">
-    </div>
-    <div class="divider">
-    </div>
-    <div class="car-div">
+    <!-- Right Section for Car Details -->
 
-        <div class="card-container">
-            <div class="card">
-                <img src="https://www.insidehook.com/wp-content/uploads/2020/02/BMW.jpg?fit=1200%2C800">
-                <div class="content">
-                    <h2>Mercedes C300</h2>
-                    <p>bil 1</p>
-                    <a href="">Læs Mere</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://www.insidehook.com/wp-content/uploads/2020/02/BMW.jpg?fit=1200%2C800">
-                <div class="content">
-                    <h2>volvo v40</h2>
-                    <p>bil 2</p>
-                    <a href="">Læs Mere</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://www.insidehook.com/wp-content/uploads/2020/02/BMW.jpg?fit=1200%2C800">
-                <div class="content">
-                    <h2>opel mokka</h2>
-                    <p>bil 3</p>
-                    <a href="">Læs Mere</a>
-                </div>
-            </div>
-        </div>
-        <div id="favorite-cars-container" class="card-container"></div>
-    </div>
 </div>
-
-<!--<div id="favorite-cars-container" class="card-container"></div>-->
 
 
 <section class="footer" id="contact">
@@ -267,9 +233,6 @@
     </p>
     <br> <br>
 </section>
-
-
-
 
 </body>
 </html>

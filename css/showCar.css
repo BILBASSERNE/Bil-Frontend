@@ -1,0 +1,50 @@
+.car-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 100px;
+}
+
+.usersidebar {
+    width: 30%;
+    background-color: #f0f0f0;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.car-details {
+    width: 65%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.car-slideshow img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+/* Additional styles for responsiveness and aesthetics */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar, .car-details {
+        width: 100%;
+    }
+}
