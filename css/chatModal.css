@@ -50,6 +50,6 @@ textarea {
     width: 100%;
 }
 
-#submitLogin {
+#submit {
     margin-top: 10px; /* Add margin to separate the button from the textareas */
 }
