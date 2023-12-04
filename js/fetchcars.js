@@ -80,7 +80,7 @@ async function insertCarCards(carAdvertisement) {
     cardContainer.appendChild(carCardDiv);
 }
 
-function redirectToFavoritePage() {
+function redirectToCarAdvertisementPage() {
     const userName = sessionStorage.getItem("userName");
 
     if (!userName) {
@@ -88,10 +88,10 @@ function redirectToFavoritePage() {
         return;
     }
 
-    fetchFavoriteCars();
+    fetchCarAdvertisements();
 }
 
-async function fetchFavoriteCars() {
+async function fetchCarAdvertisements() {
     const userName = sessionStorage.getItem("userName");
 
     if (!userName) {
@@ -99,22 +99,22 @@ async function fetchFavoriteCars() {
         return;
     }
 
-    const favoriteUrl = "http://localhost:8080/favorite/" + userName;
-    const response = await fetch(favoriteUrl);
+    const url = "http://localhost:8080/annoncer/" + userName;
+    const response = await fetch(url);
 
     if (response.ok) {
-        const favoritedCars = await response.json();
-        displayFavoriteCars(favoritedCars);
+        const myAdvertisedCars = await response.json();
+        displayMyAdvertisedCars(myAdvertisedCars);
     } else {
-        console.error("Error fetching favorited cars.");
+        console.error("Error fetching cars.");
     }
 }
 
-function displayFavoriteCars(favoritedCars) {
-    const favoriteCarsContainer = document.getElementById("favorite-cars-container");
-    favoriteCarsContainer.innerHTML = ""; // Clear existing content
+function displayMyAdvertisedCars(myAdvertisedCars) {
+    const myAdvertisedCarsContainer = document.getElementById("cars-container");
+    myAdvertisedCarsContainer.innerHTML = ""; // Clear existing content
 
-    favoritedCars.forEach(car => {
+    myAdvertisedCars.forEach(car => {
         insertCarCards(car); // Assuming insertCarCards is a function to create card elements
     });
 }
