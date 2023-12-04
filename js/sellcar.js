@@ -28,51 +28,67 @@ document.addEventListener('DOMContentLoaded', function () {
     const fuelConsumption = document.getElementById("fuelConsumption")
     const carType = document.getElementById("carType")
     const color = document.getElementById("color")
+    const fileInput = document.getElementById("carImages")
     const gearType = document.getElementById("gearType")
     const numberOfGears = document.getElementById("numberOfGears")
     const kmDriven = document.getElementById("kmDriven")
     const submitCar = document.getElementById("submitCar")
 
+
     submitCar.addEventListener("click", async function (event) {
         event.preventDefault(); // Prevent the form from submitting normally
 
-        const car = {
-            name: carName.value,
-            description: description.value,
-            price: price.value,
-            licenseplate: licensePlate.value,
-            carBrand: carBrand.value,
-            modelYear: modelYear.value,
-            boughtYear: boughtYear.value,
-            fuelType: fuelType.value,
-            fuelConsumption: fuelConsumption.value,
-            carType: carType.value,
-            color: color.value,
-            gearType: gearType.value,
-            numberOfGears: numberOfGears.value,
-            kmDriven: kmDriven.value,
-        };
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        reader.onload = async function () {
+            const base64Data = reader.result.split(',')[1];
 
-        const userName = sessionStorage.getItem("userName");
-        const postUrl = "http://localhost:8080/sellcar/" + userName;
+            const car = {
+                name: carName.value,
+                description: description.value,
+                price: price.value,
+                licenseplate: licensePlate.value,
+                carBrand: carBrand.value,
+                modelYear: modelYear.value,
+                boughtYear: boughtYear.value,
+                fuelType: fuelType.value,
+                fuelConsumption: fuelConsumption.value,
+                carType: carType.value,
+                color: color.value,
+                gearType: gearType.value,
+                numberOfGears: numberOfGears.value,
+                kmDriven: kmDriven.value,
+                images: [
+                    {
+                        "src": base64Data
+                    }
+                ]
+            };
 
-        if (!userName) {
-            alert("Du skal være logget ind for at sælge en bil");
-            return;
-        }
+            const userName = sessionStorage.getItem("userName");
+            const postUrl = "http://localhost:8080/sellcar/" + userName;
 
-        try {
-            const response = await postObjectAsJson(postUrl, car, "POST");
-            console.log("jeg poster");
-
-            if (response.ok) {
-                alert("car created");
-            } else {
-                alert("no car created");
+            if (!userName) {
+                alert("Du skal være logget ind for at sælge en bil");
+                return;
             }
-        } catch (error) {
-            console.error("Error:", error);
+
+
+            try {
+                const response = await postObjectAsJson(postUrl, car, "POST");
+                console.log("jeg poster");
+
+                if (response.ok) {
+                    alert("car created");
+                } else {
+                    alert("no car created");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+
         }
+        reader.readAsDataURL(file)
     });
 
 });

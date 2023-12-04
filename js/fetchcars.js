@@ -12,7 +12,7 @@ async function insertCarCards(carAdvertisement) {
 
     const carImage = document.createElement("img")
     carImage.className = "car-image"
-    carImage.setAttribute("src", "../images/car.jpg")
+    carImage.setAttribute("src", `data:image;base64,${carAdvertisement.images}`)
     carImage.setAttribute("alt", "Car Image")
 
     const carContent = document.createElement("div")

@@ -7,13 +7,13 @@ async function showUserInformation(carAdvertisement) {
     userInformation.innerText = "User Information"
 
     const userName = document.createElement("p")
-    userName.innerText = "Name: " + carAdvertisement.user.firstName + " " + carAdvertisement.user.lastName
+    userName.innerText = "Name: " + carAdvertisement.firstName + " " + carAdvertisement.lastName
 
     const userCity = document.createElement("p")
-    userCity.innerText = "City: " + carAdvertisement.user.city
+    userCity.innerText = "City: " + carAdvertisement.city
 
     const userNumber = document.createElement("p")
-    userNumber.innerText = "Telephone Number: " + carAdvertisement.user.phoneNumber
+    userNumber.innerText = "Telephone Number: " + carAdvertisement.phoneNumber
 
     userDiv.appendChild(userInformation)
     userDiv.appendChild(userName)
@@ -32,7 +32,7 @@ async function showCarInformation(carAdvertisement, carImage) {
     carImages.className = "car-slideshow"
 
     const carImageSlideshow = document.createElement("img")
-    carImageSlideshow.setAttribute("src", "../images/car.jpg")
+    carImageSlideshow.setAttribute("src", `data:image;base64,${carAdvertisement.images}`)
     carImageSlideshow.setAttribute("alt", "Car Image")
 
     carImages.appendChild(carImageSlideshow)
@@ -201,8 +201,8 @@ async function fetchCars() {
 
             // Assuming you have a way to get user data
             // This could be another fetch call or part of the carAdvertisement object
-            const userData = carAdvertisement.user; // Example
-            showUserInformation(userData);
+
+            showUserInformation(carAdvertisement);
         } else {
             console.error("Car data not found");
         }
