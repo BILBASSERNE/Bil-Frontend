@@ -4,7 +4,7 @@
 
 const urlBase = "http://localhost:8080/bilbassen";
 
-async function insertCarCards(carAdvertisement, carImages) {
+async function insertCarCards(carAdvertisement) {
     const carCardDiv = document.createElement("div")
     carCardDiv.className = "card"
     carCardDiv.setAttribute("data-id", carAdvertisement.id)
@@ -56,8 +56,16 @@ async function insertCarCards(carAdvertisement, carImages) {
     });
 
     const carLink = document.createElement("a")
-    carLink.href = ""
+
+    carLink.addEventListener("click", function () {
+        localStorage.setItem("carId", carAdvertisement.id)
+        window.document.location = "showcars.html"
+
+    })
     carLink.innerText = "Læs Mere"
+
+    localStorage.setItem("carId", carAdvertisement.id)
+
 
     carCardDiv.appendChild(carImage)
 
