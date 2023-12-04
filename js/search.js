@@ -16,29 +16,25 @@ function search() {
             }
         })
         .catch(error => {
-            // Display a popup with the error message
             alert(error.message);
         });
 }
 
 function displayResults(results) {
     var resultsDiv = document.getElementById("searchResults");
-    resultsDiv.innerHTML = ""; // Clear previous results
+    resultsDiv.innerHTML = "";
 
     if (results.length === 0) {
-        // If there are no results, display a message
         var noResultsMessage = document.createElement("p");
         noResultsMessage.innerText = "Ingen resultater";
         resultsDiv.appendChild(noResultsMessage);
         return;
     }
 
-    // Create a container for the cards
     var cardContainer = document.createElement("div");
     cardContainer.className = "card-container";
 
     results.forEach(result => {
-        // Create card elements similar to your manual cards
         var resultCard = document.createElement("div");
         resultCard.className = "card";
 
@@ -60,10 +56,9 @@ function displayResults(results) {
         carDescription.innerText = result.description; // Use the actual property from your result
 
         var carLink = document.createElement("a");
-        carLink.href = ""; // Use the actual link from your result
+        carLink.href = "";
         carLink.innerText = "Læs Mere";
 
-        // Append elements to build the card
         contentDiv.appendChild(carName);
         contentDiv.appendChild(carPrice);
         contentDiv.appendChild(carDescription);
@@ -72,7 +67,6 @@ function displayResults(results) {
         resultCard.appendChild(carImage);
         resultCard.appendChild(contentDiv);
 
-        // Append the card to the container
         cardContainer.appendChild(resultCard);
     });
 

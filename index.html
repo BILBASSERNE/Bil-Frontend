@@ -9,6 +9,7 @@
     <script type="module" src="js/fetchcars.js"></script>
     <script type="module" src="js/sellcar.js"></script>
 
+    <link rel="stylesheet" href="css/chatModal.css">
 
 </head>
 <body>
@@ -21,7 +22,7 @@
             <li><a id="rentCarBtn" href="#">Lej din bil ud</a></li>
             <li><a href="#">Dine annoncer</a></li>
             <li><a href="#" onclick="redirectToFavoritePage()">Dine favoritter</a></li>
-            <li></li>
+            <li><a id="chatBtn" href="#">Chat</a></li>
             <li></li>
             <li></li>
         </ul>
@@ -31,60 +32,59 @@
             <div id="sellModal" class="modal">
                 <div class="modal-content">
                     <span id="closeSellModal">&times;</span>
-                    <form method="post" action="/sellcar">
-                        <label for="name">Bilnavn:</label>
+                    <form id="sellCarForm" method="post" action="/sellcar">
+
+                        <h1>Sælg din bil</h1>
+
+                        <label for="name">Model</label>
                         <input type="text" id="name" name="name" required>
 
-                        <label for="description">Beskrivelse:</label>
+                        <label for="description">Beskrivelse</label>
                         <textarea id="description" name="description" required></textarea>
 
-                        <label for="price">Pris:</label>
+                        <label for="price">Pris</label>
                         <input type="number" id="price" name="price" required>
 
-                        <label for="licenseplate">Nummerplade:</label>
+                        <label for="licenseplate">Nummerplade</label>
                         <input type="text" id="licenseplate" name="licenseplate" required>
 
-                        <label for="carBrand">Bilmærke:</label>
+                        <label for="carBrand">Bilmærke</label>
                         <input type="text" id="carBrand" name="carBrand" required>
 
-                        <label for="modelYear">Modelår:</label>
+                        <label for="modelYear">Modelår</label>
                         <input type="number" id="modelYear" name="modelYear" required>
 
-                        <label for="boughtYear">Købsår:</label>
+                        <label for="boughtYear">Købsår</label>
                         <input type="number" id="boughtYear" name="boughtYear" required>
 
-                        <label for="fuelType">Drivmiddelstype:</label>
+                        <label for="fuelType">Brændstof type</label>
                         <input type="text" id="fuelType" name="fuelType" required>
 
-                        <label for="fuelConsumption">Brændstofforbrug:</label>
+                        <label for="fuelConsumption">Brændstofforbrug</label>
                         <input type="number" id="fuelConsumption" name="fuelConsumption" required>
 
-                        <label for="carType">Biltype:</label>
+                        <label for="carType">Biltype</label>
                         <input type="text" id="carType" name="carType" required>
 
-                        <label for="color">Farve:</label>
+                        <label for="color">Farve</label>
                         <input type="text" id="color" name="color" required>
 
-                        <label for="gearType">Geartype:</label>
+                        <label for="carImages">Billeder</label>
+                        <input type="file" id="carImages" name="carImages" accept="image/*" multiple>
+
+                        <label for="gearType">Gear type</label>
                         <input type="text" id="gearType" name="gearType" required>
 
-                        <label for="numberOfGears">Antal gear:</label>
+                        <label for="numberOfGears">Antal gear</label>
                         <input type="number" id="numberOfGears" name="numberOfGears" required>
 
-                        <label for="kmDriven">Antal kilometer kørt:</label>
+                        <label for="kmDriven">KM/Kørt</label>
                         <input type="number" id="kmDriven" name="kmDriven" required>
-
-                        <label for="isActive">Klik af for at aktivere annonce:</label>
-                        <input type="checkbox" id="isActive" name="isActive" required>
-
 
                         <button type="submit" id="submitCar">Opret Annonce</button>
                     </form>
-
                 </div>
-
             </div>
-
         </section>
 
         <section id="rentSection">
@@ -92,6 +92,9 @@
                 <div class="modal-content">
                     <span id="closeRentModal">&times;</span>
                     <form method="post" action="/sellcar">
+
+                        <h1>Lej din bil ud</h1>
+
                         <label for="rentname">Bilnavn:</label>
                         <input type="text" id="rentname" name="name" required>
 
@@ -136,7 +139,6 @@
             </div>
 
         </section>
-
 
         <!-- OPRET BRUGER -->
         <section id="modal">
@@ -191,6 +193,33 @@
             </div>
         </section>
 
+        <!-- CHAT -->
+        <section id="chatSection">
+            <div class="chatModal" id="gptModal">
+                <div class="modal-content">
+                    <span class="close" id="closeBtn">&times;</span>
+                    <form method="POST" id="form" action="/chat">
+                        <h2>I tvivl om hvilken bil du skal købe? Chat med os!</h2>
+                        <textarea id="multi-line-input" name="moviesAndActors" rows="10" cols="80"
+                                  placeholder="Fortæl os lidt om hvilken slags bil du leder efter ift. bilmærke præferencer, dit budget og mere...
+
+for eksempel:
+Jeg leder efter en lille bil jeg skal kunne parkere med inde i byen, det behøver ikke at være noget fancy,
+så længe den kører langt på literen og er i rimelig stand. Hvilke biler kunne i anbefale?"
+
+                        ></textarea>
+                        <br>
+                        <input type="hidden" id="requestInput" name="request" value="">
+
+                        <button type="submit" id="submitLogin">Submit</button>
+                    </form>
+                    <br>
+                    <textarea id="answerBox" name="answerBox" rows="10" cols="80" placeholder="Forslag..."></textarea>
+                    <br>
+                </div>
+
+            </div>
+        </section>
 
         <div class="sign-in">
             <ul>
@@ -250,7 +279,6 @@
 
 <!--<div id="favorite-cars-container" class="card-container"></div>-->
 
-
 <section class="footer" id="contact">
     <div><a href="https://github.com/navidmirzad/KinoXP" target="_blank" rel="noopener" rel="noreferrer" class="social">
         <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" width="50" height="50" viewBox="0 0 24 24">
@@ -269,7 +297,11 @@
 </section>
 
 
-
-
+<script src="js/index.js"></script>
+<script src="js/search.js"></script>
+<script src="js/sellcar.js"></script>
+<script src="js/fetchcars.js"></script>
+<script src="js/CarRecommendationForm.js"></script>
+<script type="module" src="js/modulejson.js"></script>
 </body>
 </html>

@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const gearType = document.getElementById("gearType")
     const numberOfGears = document.getElementById("numberOfGears")
     const kmDriven = document.getElementById("kmDriven")
-    const isActive = document.getElementById("isActive")
     const submitCar = document.getElementById("submitCar")
 
     submitCar.addEventListener("click", async function (event) {
@@ -41,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
             name: carName.value,
             description: description.value,
             price: price.value,
-            liscensePlate: licensePlate.value,
+            licenseplate: licensePlate.value,
             carBrand: carBrand.value,
             modelYear: modelYear.value,
             boughtYear: boughtYear.value,
@@ -52,11 +51,15 @@ document.addEventListener('DOMContentLoaded', function () {
             gearType: gearType.value,
             numberOfGears: numberOfGears.value,
             kmDriven: kmDriven.value,
-            isActive: isActive.value
         };
 
-        const postUrl = "http://localhost:8080/sellcar";
+        const userName = sessionStorage.getItem("userName");
+        const postUrl = "http://localhost:8080/sellcar/" + userName;
 
+        if (!userName) {
+            alert("Du skal være logget ind for at sælge en bil");
+            return;
+        }
 
         try {
             const response = await postObjectAsJson(postUrl, car, "POST");
@@ -129,6 +132,12 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(car)
 
         const postUrl = "http://localhost:8080/rentcar";
+
+        const userName = sessionStorage.getItem("userName");
+        if (!userName) {
+            alert("Du skal være logget ind for at kunne leje en bil ud");
+            return;
+        }
 
 
         try {

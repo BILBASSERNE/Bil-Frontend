@@ -81,6 +81,10 @@ document.addEventListener("DOMContentLoaded", function () {
     submitLogin.addEventListener("click", async function (event) {
         event.preventDefault()
 
+        if (!document.getElementById("usernameLogin").checkValidity() || !document.getElementById("passwordLogin").checkValidity()) {
+            alert("Du skal bruge både et brugernavn og et kodeord for at logge ind")
+        }
+
         const userLogin = {
             userName: userName.value,
             password: password.value
