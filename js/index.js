@@ -48,6 +48,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (response.ok) {
                 alert("Account Created!");
+                sessionStorage.setItem("userName", newAccount.userName)
+                modal.style.display = "none"
+                updateButtonsIfLoggedIn()
             } else {
                 alert("Error creating account");
             }
