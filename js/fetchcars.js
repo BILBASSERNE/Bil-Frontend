@@ -80,6 +80,8 @@ async function insertCarCards(carAdvertisement) {
     cardContainer.appendChild(carCardDiv);
 }
 
+// ------------------------------------------------------------------ VIEW MY CAR ADS SECTION ---------------------------------------------------------
+
 function redirectToCarAdvertisementPage() {
     const userName = sessionStorage.getItem("userName");
 
@@ -99,7 +101,7 @@ async function fetchCarAdvertisements() {
         return;
     }
 
-    const url = "http://localhost:8080/annoncer/" + userName;
+    const url = "http://localhost:8080/annonce/" + userName;
     const response = await fetch(url);
 
     if (response.ok) {
@@ -119,6 +121,50 @@ function displayMyAdvertisedCars(myAdvertisedCars) {
     });
 }
 
+
+// -------------------------------------------------------- VIEW FAVORITTED CARS SECTION -----------------------------------------------------------------
+
+function redirectToFavoriteCarsPage() {
+    const userName = sessionStorage.getItem("userName");
+    console.log("You are clicking favoritted button ")
+
+    if (!userName) {
+        alert("Log ind for at kunne se favorittede biler");
+        return;
+    }
+
+    fetchFavoriteCars();
+}
+
+async function fetchFavoriteCars() {
+    const userName = sessionStorage.getItem("userName");
+
+    if (!userName) {
+        console.error("Bruger ikke logget ind");
+        return;
+    }
+
+    const favoriteUrl = "http://localhost:8080/favorite/" + userName;
+    const response = await fetch(favoriteUrl);
+
+    if (response.ok) {
+        const favoriteCars = await response.json();
+        displayFavoriteCars(favoriteCars);
+    } else {
+        console.error("Error fetching cars.");
+    }
+}
+
+function displayFavoriteCars(favoriteCars) {
+    const myFavoriteCarsContainer = document.getElementById("cars-container");
+    myFavoriteCarsContainer.innerHTML = ""; // Clear existing content
+
+    favoriteCars.forEach(car => {
+        insertCarCards(car); // Assuming insertCarCards is a function to create card elements
+    });
+}
+
+// ----------------------------------------- FETCH CARS SECTION --------------------------------------------------------------------
 
 let cars = []
 
