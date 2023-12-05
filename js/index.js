@@ -47,9 +47,9 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("inside postCustomer");
 
             if (response.ok) {
-                alert("Account Created!");
+                alert("Bruger oprettet!");
             } else {
-                alert("Error creating account");
+                alert("Problem med at oprette bruger");
             }
         } catch (error) {
             console.error("Error:", error);
