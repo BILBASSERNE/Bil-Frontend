@@ -60,12 +60,8 @@ async function insertCarCards(carAdvertisement) {
     carLink.addEventListener("click", function () {
         localStorage.setItem("carId", carAdvertisement.id)
         window.document.location = "showcars.html"
-
     })
     carLink.innerText = "Læs Mere"
-
-    localStorage.setItem("carId", carAdvertisement.id)
-
 
     carCardDiv.appendChild(carImage)
 
