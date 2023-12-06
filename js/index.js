@@ -135,15 +135,108 @@ function updateButtonsIfLoggedIn() {
         buttons.innerHTML = "";
     }
 
+    const userName = sessionStorage.getItem("userName")
+
+    const userButton = document.createElement("button")
+    userButton.textContent = userName
+
     const logoutBtn = document.createElement("button")
     logoutBtn.textContent = "Log ud"
+
+    userButton.addEventListener("click", function () {
+        const editUserModal = document.getElementById("myModal")
+        editUserModal.style.display = "block"
+
+        fetchAnyUrl("http://localhost:8080/user/" + userName)
+            .then(user => {
+                populateEditUserModal(user)
+            })
+            .catch(error => {
+                console.error("An error has occured", error)
+            })
+
+    })
 
     logoutBtn.addEventListener("click", function () {
         sessionStorage.removeItem("userName")
         location.reload()
     })
 
+    buttons.appendChild(userButton)
     buttons.appendChild(logoutBtn)
+}
+
+function populateEditUserModal(user) {
+    document.getElementById("username").value = user.userName
+    document.getElementById("firstname").value = user.firstName
+
+    document.getElementById("lastname").value = user.lastName
+    document.getElementById("city").value = user.city
+    document.getElementById("phoneNumber").value = user.phoneNumber
+    document.getElementById("email").value = user.email
+
+    const createForm = document.getElementById("createForm")
+
+    document.getElementById("submitAccount").remove()
+
+    const editButton = document.createElement("button")
+    editButton.textContent = "Ret bruger"
+
+    const deleteButton = document.createElement("button")
+    deleteButton.textContent = "Slet bruger"
+    deleteButton.style.marginTop = "5px"
+    deleteButton.style.backgroundColor = "red"
+
+    createForm.appendChild(editButton)
+    createForm.appendChild(deleteButton)
+
+    // EVENTLISTENERS
+
+    deleteButton.addEventListener("click" , function () {
+        fetch('http://localhost:8080/user/' + user.userName, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert("Your account has been deleted")
+                    sessionStorage.removeItem("userName")
+                    window.location.reload()
+                } else {
+                    alert("Something went wrong")
+                }
+            })
+    })
+
+    editButton.addEventListener("click",function (event) {
+        event.preventDefault()
+        const editedUser = {
+            userName: document.getElementById("username").value,
+            firstName: document.getElementById("firstname").value,
+            password: document.getElementById("password").value,
+            lastName: document.getElementById("lastname").value,
+            city: document.getElementById("city").value,
+            phoneNumber: document.getElementById("phoneNumber").value,
+            email: document.getElementById("email").value
+        }
+        postObjectAsJson("http://localhost:8080/user/" + user.userName, editedUser, 'PUT')
+            .then(response => {
+                console.log(response)
+                if (response.ok) {
+                    alert("User has been edited")
+                    if (user.userName !== editedUser.userName) {
+                        sessionStorage.removeItem("userName")
+                        sessionStorage.setItem("userName", editedUser.userName)
+                    }
+                    window.location.reload()
+                } else {
+                    alert("Something went wrong while editing")
+                }
+            })
+    })
+
 }
 
 async function postObjectAsJson(url, object, httpVerbum) {
@@ -159,4 +252,6 @@ async function postObjectAsJson(url, object, httpVerbum) {
     const response = await fetch(url, fetchOptions)
     return response
 }
+
+
 
