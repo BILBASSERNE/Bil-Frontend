@@ -47,12 +47,13 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("inside postCustomer");
 
             if (response.ok) {
-                alert("Account Created!");
+                alert("Bruger oprettet!");
                 sessionStorage.setItem("userName", newAccount.userName)
                 modal.style.display = "none"
                 updateButtonsIfLoggedIn()
+
             } else {
-                alert("Error creating account");
+                alert("Problem med at oprette bruger");
             }
         } catch (error) {
             console.error("Error:", error);
@@ -252,6 +253,4 @@ async function postObjectAsJson(url, object, httpVerbum) {
     const response = await fetch(url, fetchOptions)
     return response
 }
-
-
 
