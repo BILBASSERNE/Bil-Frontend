@@ -86,7 +86,7 @@ function redirectToCarAdvertisementPage() {
     const userName = sessionStorage.getItem("userName");
 
     if (!userName) {
-        alert("Please log in to view favorites.");
+        alert("Log ind for at kunne bruge denne funktion");
         return;
     }
 
@@ -129,7 +129,7 @@ function redirectToFavoriteCarsPage() {
     console.log("You are clicking favoritted button ")
 
     if (!userName) {
-        alert("Log ind for at kunne se favorittede biler");
+        alert("Log ind for at kunne bruge denne funktion");
         return;
     }
 

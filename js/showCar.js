@@ -1,3 +1,4 @@
+//import {postObjectAsJson} from "./modulejson";
 
 async function showUserInformation(carAdvertisement) {
     const userDiv = document.createElement("div")
@@ -15,6 +16,45 @@ async function showUserInformation(carAdvertisement) {
     const userNumber = document.createElement("p")
     userNumber.innerText = "Telephone Number: " + carAdvertisement.phoneNumber
 
+    const userNameSession = sessionStorage.getItem("userName")
+    console.log(userNameSession)
+
+    fetch("http://localhost:8080/check/" + carAdvertisement.id + "/" + userNameSession)
+        .then(response => {
+
+                if (response.ok) {
+                const editButton = document.createElement("button");
+                editButton.innerText = "Rediger annonce";
+                userDiv.appendChild(editButton)
+
+                const editModal = document.getElementById("sellModal")
+
+                editButton.addEventListener("click", function (event) {
+                    const editModal = document.getElementById("sellModal")
+                    editModal.style.display = "block";
+
+                    fetchAnyUrl("http://localhost:8080/existingcarinfo/" + carAdvertisement.id)
+                        .then(carAdvertisement => {
+                            populateEditModal(carAdvertisement)
+                        })
+                        .catch(error => {
+                            console.error("An error has occured")
+                        })
+                })
+
+                // closes modal if u click outside it
+                window.addEventListener("click", function (event) {
+                    if (event.target === editModal) {
+                        editModal.style.display = "none";
+                    }
+                });
+            }
+        })
+        .catch(error => {
+            console.error("An error has occured")
+        })
+
+
     userDiv.appendChild(userInformation)
     userDiv.appendChild(userName)
     userDiv.appendChild(userCity)
@@ -23,6 +63,94 @@ async function showUserInformation(carAdvertisement) {
     const carContainer = document.querySelector('.car-container');
     carContainer.appendChild(userDiv);
 }
+
+function populateEditModal(carAdvertisement) {
+
+    document.getElementById("name").value = carAdvertisement.name;
+    document.getElementById("description").value = carAdvertisement.description;
+    document.getElementById("price").value = carAdvertisement.price;
+    document.getElementById("licenseplate").value = carAdvertisement.licenseplate;
+    document.getElementById("carBrand").value = carAdvertisement.carBrand;
+    document.getElementById("modelYear").value = carAdvertisement.modelYear;
+    document.getElementById("boughtYear").value = carAdvertisement.boughtYear;
+    document.getElementById("fuelType").value = carAdvertisement.fuelType;
+    document.getElementById("fuelConsumption").value = carAdvertisement.fuelConsumption;
+    document.getElementById("carType").value = carAdvertisement.carType;
+    document.getElementById("color").value = carAdvertisement.color;
+    //document.getElementById("carImages").value = carAdvertisement.carImages;
+    document.getElementById("gearType").value = carAdvertisement.gearType;
+    document.getElementById("numberOfGears").value = carAdvertisement.numberOfGears;
+    document.getElementById("kmDriven").value = carAdvertisement.kmDriven;
+
+    const editCarForm = document.getElementById("editCarAdForm")
+
+    document.getElementById("submitCar").remove()
+
+    const newEditButton = document.createElement("button")
+    newEditButton.textContent = "Ret Annonce"
+
+    const deleteButton = document.createElement("button")
+    deleteButton.textContent = "Slet annonce"
+    deleteButton.style.backgroundColor = "red";
+
+    editCarForm.appendChild(newEditButton)
+    editCarForm.appendChild(deleteButton)
+
+    // EDIT CAR ADVERTISEMENT
+
+    newEditButton.addEventListener("click", function(event) {
+        event.preventDefault()
+
+        const editedCarAdvertisement = {
+            name: document.getElementById("name").value,
+            description: document.getElementById("description").value,
+            price: document.getElementById("price").value,
+            licenseplate: document.getElementById("licenseplate").value,
+            carBrand: document.getElementById("carBrand").value,
+            modelYear: document.getElementById("modelYear").value,
+            boughtYear: document.getElementById("boughtYear").value,
+            fuelType: document.getElementById("fuelType").value,
+            fuelConsumption: document.getElementById("fuelConsumption").value,
+            carType: document.getElementById("carType").value,
+            color: document.getElementById("color").value,
+            //fileInput: document.getElementById("carImages").value,
+            gearType: document.getElementById("gearType").value,
+            numberOfGears: document.getElementById("numberOfGears").value,
+            kmDriven: document.getElementById("kmDriven").value
+        }
+
+            postObjectAsJson("http://localhost:8080/editcar/" + carAdvertisement.id, editedCarAdvertisement, "PUT")
+                .then(response => {
+                    console.log(response)
+                    if (response.ok) {
+                        alert("Advertisement has been edited")
+                    } else {
+                        alert("Something went wrong")
+                    }
+                })
+    })
+
+    // DELETE CAR ADVERTISEMENT
+
+        deleteButton.addEventListener("click" , function () {
+            fetch('http://localhost:8080/deletecar/' + carAdvertisement.id, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Din annonce er blevet slettet")
+                        sessionStorage.removeItem("carId")
+                        window.location.href = 'index.html'
+                    } else {
+                        alert("Something went wrong")
+                    }
+                })
+        })
+}
+
 
 async function showCarInformation(carAdvertisement, carImage) {
     const carDiv = document.createElement("div")
@@ -224,4 +352,18 @@ document.addEventListener("DOMContentLoaded", actionGetCars);
 
 function actionGetCars() {
     fetchCars();
+}
+
+async function postObjectAsJson(url, object, httpVerbum) {
+    const objectAsJsonString = JSON.stringify(object)
+    console.log(objectAsJsonString)
+    const fetchOptions = {
+        method: httpVerbum,
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: objectAsJsonString
+    }
+    const response = await fetch(url, fetchOptions)
+    return response
 }
