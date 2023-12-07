@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (response.ok) {
                     alert("car created");
+                    window.location.href = "index.html"
                 } else {
                     alert("no car created");
                 }
@@ -139,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const seats = document.getElementById("rentseats")
     const equipment = document.getElementById("rentequipment")
     const rules = document.getElementById("rentrules")
+    const fileInput = document.getElementById("carImages2")
     const location = document.getElementById("rentlocation")
     const rentSubmitCar = document.getElementById("rentsubmitCar")
     const isRenting = true
@@ -146,44 +148,56 @@ document.addEventListener('DOMContentLoaded', function () {
     rentSubmitCar.addEventListener("click", async function (event) {
         event.preventDefault(); // Prevent the form from submitting normally
 
-        const car = {
-            name: rentCarName.value,
-            description: rentDescription.value,
-            price: rentPrice.value,
-            carBrand: rentCarBrand.value,
-            modelYear: rentModelYear.value,
-            fuelType: rentFuelType.value,
-            carType: rentCarType.value,
-            gearType: rentGearType.value,
-            seats: seats.value,
-            equipment: equipment.value,
-            rules: rules.value,
-            location: location.value,
-            isRenting: true
-        };
-        console.log(car)
+        const file = fileInput.files[0];
+        const reader = new FileReader();
 
-        const postUrl = "http://localhost:8080/rentcar";
+        reader.onload = async function () {
+            const base64Data = reader.result.split(',')[1];
+            const car = {
+                name: rentCarName.value,
+                description: rentDescription.value,
+                price: rentPrice.value,
+                carBrand: rentCarBrand.value,
+                modelYear: rentModelYear.value,
+                fuelType: rentFuelType.value,
+                carType: rentCarType.value,
+                gearType: rentGearType.value,
+                seats: seats.value,
+                equipment: equipment.value,
+                rules: rules.value,
+                location: location.value,
+                isRenting: true,
+                images: [
+                    {
+                        "src": base64Data
+                    }
+                ]
+            };
+            console.log(car)
 
-        const userName = sessionStorage.getItem("userName");
-        if (!userName) {
-            alert("Du skal være logget ind for at kunne leje en bil ud");
-            return;
-        }
-
-
-        try {
-            const response = await postObjectAsJson(postUrl, car, "POST");
-            console.log("jeg poster");
-
-            if (response.ok) {
-                alert("car created");
-            } else {
-                alert("no car created");
+            const userName = sessionStorage.getItem("userName");
+            const postUrl = "http://localhost:8080/rentcar/" + userName;
+            if (!userName) {
+                alert("Du skal være logget ind for at kunne leje en bil ud");
+                return;
             }
-        } catch (error) {
-            console.error("Error:", error);
+
+
+            try {
+                const response = await postObjectAsJson(postUrl, car, "POST");
+                console.log("jeg poster");
+
+                if (response.ok) {
+                    alert("car created");
+                    window.location.href = "index.html"
+                } else {
+                    alert("no car created");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
         }
+        reader.readAsDataURL(file)
     });
 
 });

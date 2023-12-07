@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (response.ok) {
                 alert("Bruger oprettet!");
                 sessionStorage.setItem("userName", newAccount.userName)
-                modal.style.display = "none"
+                window.location.href = "index.html"
                 updateButtonsIfLoggedIn()
 
             } else {
@@ -205,7 +205,7 @@ function populateEditUserModal(user) {
                 if (response.ok) {
                     alert("Your account has been deleted")
                     sessionStorage.removeItem("userName")
-                    window.location.reload()
+                    window.location.href = "index.html"
                 } else {
                     alert("Something went wrong")
                 }

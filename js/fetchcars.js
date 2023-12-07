@@ -64,7 +64,7 @@ async function insertCarCards(carAdvertisement) {
     })
     carLink.innerText = "Læs Mere"
 
-    localStorage.setItem("carId", carAdvertisement.id)
+    //localStorage.setItem("carId", carAdvertisement.id)
 
 
     carCardDiv.appendChild(carImage)
@@ -117,6 +117,7 @@ function displayMyAdvertisedCars(myAdvertisedCars) {
     myAdvertisedCarsContainer.innerHTML = ""; // Clear existing content
 
     myAdvertisedCars.forEach(car => {
+        console.log(car.id)
         insertCarCards(car); // Assuming insertCarCards is a function to create card elements
     });
 }
@@ -181,5 +182,7 @@ function actionGetCars() {
 function fetchAnyUrl(url) {
     return  fetch(url).then(response => response.json());
 }
+
+
 
 document.addEventListener("DOMContentLoaded", actionGetCars)

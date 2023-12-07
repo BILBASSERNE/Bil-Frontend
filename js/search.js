@@ -9,8 +9,11 @@ function search() {
         })
         .then(data => {
             if (data.length > 0) {
-                displayResults(data);
-                alert("Search function works!");
+                document.getElementById("cars-container").innerHTML = "";
+                data.forEach(car => {
+                    insertCarCards(car)
+                })
+
             } else {
                 throw new Error("No cars found");
             }
@@ -39,7 +42,7 @@ function displayResults(results) {
         resultCard.className = "card";
 
         var carImage = document.createElement("img");
-        carImage.src = result.imagePath || "../images/car.jpg";
+        carImage.setAttribute("src", `data:image;base64,${result.images}`)
         carImage.alt = "Car Image";
         carImage.className = "car-image";
 

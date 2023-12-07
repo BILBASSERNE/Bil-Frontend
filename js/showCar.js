@@ -16,12 +16,13 @@ async function showUserInformation(carAdvertisement) {
     const userNumber = document.createElement("p")
     userNumber.innerText = "Telephone Number: " + carAdvertisement.phoneNumber
 
-    const userNameSession = sessionStorage.getItem("userName")
-    console.log(userNameSession)
+    let userNameSession = sessionStorage.getItem("userName")
+
 
     fetch("http://localhost:8080/check/" + carAdvertisement.id + "/" + userNameSession)
         .then(response => {
 
+            console.log("http://localhost:8080/check/" + carAdvertisement.id + "/" + userNameSession)
                 if (response.ok) {
                 const editButton = document.createElement("button");
                 editButton.innerText = "Rediger annonce";
@@ -123,6 +124,7 @@ function populateEditModal(carAdvertisement) {
                 .then(response => {
                     console.log(response)
                     if (response.ok) {
+                        window.location.reload()
                         alert("Advertisement has been edited")
                     } else {
                         alert("Something went wrong")
