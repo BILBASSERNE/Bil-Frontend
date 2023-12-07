@@ -3,7 +3,15 @@ document.addEventListener('DOMContentLoaded', function () {
     var sellBtn = document.getElementById("sellCarBtn");
     var closeButton = document.getElementById("closeSellModal");
 
+    const userName = sessionStorage.getItem("userName")
+
     sellBtn.onclick = function () {
+
+        if (!userName) {
+            alert("Log ind for at kunne bruge denne funktion");
+            return;
+        }
+
         sellModal.style.display = "block";
     }
 
@@ -98,7 +106,15 @@ document.addEventListener('DOMContentLoaded', function () {
     var rentBtn = document.getElementById("rentCarBtn");
     var closeButton = document.getElementById("closeRentModal");
 
+    const userName = sessionStorage.getItem("userName")
+
     rentBtn.onclick = function () {
+
+        if (!userName) {
+            alert("Log ind for at kunne bruge denne funktion");
+            return;
+        }
+
         rentModal.style.display = "block";
     }
 

@@ -105,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 closeLoginModal()
                 sessionStorage.setItem("userName", userLogin.userName)
                 updateButtonsIfLoggedIn()
+                location.reload();
 
             } else {
                 console.log("failed")
