@@ -83,6 +83,7 @@ async function insertCarCards(carAdvertisement) {
 // ------------------------------------------------------------------ VIEW MY CAR ADS SECTION ---------------------------------------------------------
 
 function redirectToCarAdvertisementPage() {
+    window.location.href = "index.html"
     const userName = sessionStorage.getItem("userName");
 
     if (!userName) {
@@ -126,6 +127,7 @@ function displayMyAdvertisedCars(myAdvertisedCars) {
 // -------------------------------------------------------- VIEW FAVORITTED CARS SECTION -----------------------------------------------------------------
 
 function redirectToFavoriteCarsPage() {
+    window.location.href = "index.html"
     const userName = sessionStorage.getItem("userName");
     console.log("You are clicking favoritted button ")
 
