@@ -198,7 +198,7 @@ a:hover {
     border: none;
     cursor: pointer;
     font-size: 32px;
-    padding: 0;
+    padding: 5px;
     display: inline-block;
 }
 
@@ -206,6 +206,22 @@ a:hover {
     content: '\2605'; /* Unicode character for a star */
     color: gold; /* You can change the color to your preference */
 }
+
+.isForRentSign {
+    background-color: #1565c0;
+    font-size: 25px;
+    cursor: pointer;
+    display: inline-block;
+    /* Add any additional styles specific to isForRentSign */
+}
+
+.isForRentSign:hover {
+    /* No hover effect for this button */
+    background-color: #1565c0;
+    color: #050505;
+    transform: none;
+}
+
 
 
 .footer {

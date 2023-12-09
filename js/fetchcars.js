@@ -24,6 +24,15 @@ async function insertCarCards(carAdvertisement) {
     const carPrice = document.createElement("p")
     carPrice.innerText = carAdvertisement.price + "kr"
 
+    const isForRentSign = document.createElement("button");
+    isForRentSign.classList.add("isForRentSign")
+
+    if (carAdvertisement.renting) {
+        isForRentSign.innerText = "Til leje";
+    } else {
+        isForRentSign.innerText = "Til salg";
+    }
+
     const favoriteButton = document.createElement("button")
     favoriteButton.innerText = "";
     favoriteButton.classList.add("favorite-button");
@@ -73,6 +82,7 @@ async function insertCarCards(carAdvertisement) {
     carContent.appendChild(carPrice)
     carContent.appendChild(carLink)
     carContent.appendChild(favoriteButton)
+    carContent.appendChild(isForRentSign)
 
     carCardDiv.appendChild(carContent)
 
@@ -184,7 +194,5 @@ function actionGetCars() {
 function fetchAnyUrl(url) {
     return  fetch(url).then(response => response.json());
 }
-
-
 
 document.addEventListener("DOMContentLoaded", actionGetCars)
